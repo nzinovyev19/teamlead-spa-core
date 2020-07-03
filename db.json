@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "login": "admin",
+      "password": "12345",
+      "role": "writer"
+    },
+    {
+      "id": 2,
+      "login": "reader",
+      "password": "12345",
+      "role": "reader"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Как быть то а??",
+      "description": "Как быть, если не успеваешь?",
+      "claps": 2,
+      "createdAt": "2020-07-02T09:11:49.768Z",
+      "updatedAt": "2020-07-02T09:11:49.768Z",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "Как быть",
+      "description": "Как быть, если всем ... на твое время",
+      "claps": 3,
+      "createdAt": "2019-09-29T00:00:00.000Z",
+      "updatedAt": "2019-09-29T00:00:00.000Z",
+      "userId": 1
+    }
+  ]
+}
