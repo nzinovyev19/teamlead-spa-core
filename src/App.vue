@@ -1,32 +1,47 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <header>
+      <div class="container">
+        <b-navbar>
+            <template slot="start">
+              <b-navbar-item v-if="!user" href="/login">Login</b-navbar-item>
+              <b-navbar-item v-else @click="logout">Logout</b-navbar-item>
+              <b-navbar-item href="/">Posts</b-navbar-item>
+              <b-navbar-item v-if="userRoleIsWriter" @click="pushOnCreatinPost">New Post</b-navbar-item>
+            </template>
+        </b-navbar>
+      </div>
+    </header>
+    <main>
+      <router-view/>
+    </main>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import Vue from 'vue';
+import { User } from '@/store/types';
+import { Component } from 'vue-property-decorator';
+import { State, Mutation } from 'vuex-class';
 
-#nav {
-  padding: 30px;
-}
+@Component({
+  name: 'App',
+})
+export default class extends Vue {
+  @State user!: User | null
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  @Mutation unsetUser!: () => void
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+  get userRoleIsWriter(): boolean {
+    return this.user?.role === 'writer';
+  }
+
+  pushOnCreatinPost() {
+    this.$router.push({ name: 'CreatePost' });
+  }
+
+  logout() {
+    this.unsetUser();
+  }
 }
-</style>
+</script>
