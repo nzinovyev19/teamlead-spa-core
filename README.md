@@ -1,5 +1,32 @@
 # teamlead-spa-core
 
+## Test users
+```
+Writers: [
+  {
+    login: 'admin',
+    password: '12345'
+  },
+  {
+    login: 'writer',
+    password: '12345',
+  }
+]
+Readers: [
+  {
+    login: 'reader',
+    password: '12345'
+  }
+]
+```
+
+## For run Project
+```
+npm install
+json-server ./src/initDbData.js
+npm run serve
+```
+
 ## Project setup
 ```
 npm install
@@ -12,7 +39,7 @@ npm run serve
 
 ### Run json-server
 ```
-json-server --watch db.json
+json-server ./src/initDbData.js
 ```
 
 ### Compiles and minifies for production
