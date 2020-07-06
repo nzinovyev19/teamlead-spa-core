@@ -23,11 +23,4 @@ export interface RootState {
   error: null | Error;
 }
 
-export interface EditedPostData { // Change or delete
-  id: number;
-  changedData: {
-    [key: string]: number | string;
-  };
-}
-
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

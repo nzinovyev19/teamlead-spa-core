@@ -37,7 +37,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Action, State } from 'vuex-class';
-import { Post, EditedPostData } from '../store/types';
+import { Post, Omit } from '../store/types';
 
 @Component({
   name: 'PostsEditing',
@@ -47,7 +47,12 @@ export default class extends Vue {
 
   @Action fetchPost!: (id: string) => Promise<void>
 
-  @Action editPost!: (data: EditedPostData) => Promise<void>
+  @Action editPost!: (
+    data: {
+      id: number;
+      changedData: Omit<Post, 'id' | 'claps' | 'createdAt' | 'updatedAt' | 'userId'>; // TODO: With only Pick
+    }
+  ) => Promise<void>
 
   formValues = {
     title: '',
