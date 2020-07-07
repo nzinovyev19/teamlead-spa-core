@@ -43,7 +43,7 @@
 import Vue from 'vue';
 import { State, Mutation, Action } from 'vuex-class';
 import { Component, Prop } from 'vue-property-decorator';
-import { Post, User, EditedPostData } from '../store/types';
+import { Post, User } from '../store/types';
 import { formatDates } from '../helpers';
 
 @Component({
@@ -56,7 +56,10 @@ export default class extends Vue {
 
   @Action deletePost!: (id: number) => Promise<void>
 
-  @Action editPost!: (data: EditedPostData) => Promise<void>
+  @Action editPost!: (data: {
+      id: number;
+      changedData: { claps: number };
+    }) => Promise<void>
 
   @Mutation updatePosts!: (changedPost: Post) => void
 
